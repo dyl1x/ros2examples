@@ -1,0 +1,9 @@
+logs/
+log/
+build/
+.vscode/
+install/
+
+# Ignore generated docs
+*.dox
+*.wikidoc
