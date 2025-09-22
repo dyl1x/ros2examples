@@ -23,3 +23,8 @@ ros2 pkg create --build-type ament_cmake --license BSD-3-Clause cobot_ros2
 
 make the xacro urdfs
 touch ~/ros2_ws/src/mycobot_ros2/mycobot_description/urdf/mech/{g_shape_base_v2_0.urdf.xacro,adaptive_gripper.urdf.xacro,mycobot_280_arm.urdf.xacro} ~/ros2_ws/src/mycobot_ros2/mycobot_description/urdf/robots/mycobot_280.urdf.xacro
+
+to generate the coordinate frames pdfs, with flow chart:
+ros2 run tf2_tools view_frames
+to open pdf:
+evince frames_YYYY-MM-DD_HH.MM.SS.pdf 
