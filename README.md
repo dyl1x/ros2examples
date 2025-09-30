@@ -27,6 +27,9 @@ touch ~/ros2_ws/src/mycobot_ros2/mycobot_description/urdf/mech/{g_shape_base_v2_
 to generate the coordinate frames pdfs, with flow chart:
 ros2 run tf2_tools view_frames
 to open pdf:
-evince frames_YYYY-MM-DD_HH.MM.SS.pdf 
+evince frames_YYYY-MM-DD_HH.MM.SS.pdf
 to launch the model in rviz:
 ros2 launch urdf_tutorial display.launch.py model:=/home/chamath/ros2_ws/src/yahboom_rosmaster/yahboom_rosmaster_description/urdf/robots/rosmaster_x3.urdf.xacro
+
+
+make a file executable: sudo chmod +x file.sh
