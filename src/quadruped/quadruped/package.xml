@@ -9,6 +9,12 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <exec_depend>quadruped_bringup</exec_depend>
+  <exec_depend>quadruped_description</exec_depend>
+  <exec_depend>quadruped_gazebo</exec_depend>
+  <exec_depend>quadruped_moveit_config</exec_depend>
+  <exec_depend>quadruped_system_tests</exec_depend>
+
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 

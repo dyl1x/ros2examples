@@ -62,17 +62,21 @@ rqt console
 `ros2 run rqt_console rqt_console`
 
 ## Make robot sim
-1 make packages:
+1. make packages:
 - robot (main pkg)
   - robot
   - robot description
   - gazebo
   - system_tests
 
-2 add the sub packages to the package.xml of main robot as:
-> <exec_depend>
+2. add the sub packages to the package.xml of main robot as:
+```
+ <exec_depend>robot_bringup</exec_depend>
+```
+they will go into the main pkg:
+>robot/robot/package.xml
 
-3 add this block to package.xml in gazebo pkg for gz integration:
+3. add this block to package.xml in gazebo pkg for gz integration:
 ```
   <depend>controller_manager</depend>
   <depend>gz_ros2_control</depend>
@@ -91,7 +95,7 @@ rqt console
   <exec_depend>rviz_imu_plugin</exec_depend>
 ```
 
-4 add them to cmakelists as well. of gz pkg
+4. add them to cmakelists as well. of gz pkg
 ```
 find_package(ament_cmake REQUIRED)
 find_package(controller_manager REQUIRED)
@@ -106,14 +110,14 @@ find_package(ros2_controllers REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 find_package(xacro REQUIRED)
 ```
-5 build
+5. build
 
-6 install depends:
+6. install depends:
 `rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y`
 
-7 build and source
+7. build and source
 
-8 world files
+8. world files
 make world files
 these go inside the gz pkg,
 >robot_gazebo/worlds
@@ -123,30 +127,43 @@ these go inside the gz pkg,
 make a filename.world file and copy the code from a template work file.
 add models to the folder
 
-9 yaml config. tell ros2 control how to manage the robot movements.
+9. yaml config. tell ros2 control how to manage the robot movements.
 file goes in:
->robot/robot_description/config/robot/
+>robot/robot_moveit_config/config/robot/
 
-10 make the .urdf.xacro files
-they all go into
->  urdf/control.
-the urdf.xacro file inside robot should know about these files. (its at the bottom)
+10. make the .urdf.xacro files
+make the folders: run a command inside:
+> robot/robot_description.
+```
+mkdir -p launch meshes rviz urdf/control urdf/mech urdf/robots
+```
 
-11 make launch files
+also add a block to the cmake so it knows about the folders
+```
+#copy needed files
+install(
+  DIRECTORY launch meshes urdf rviz
+  DESTINATION share/${PROJECT_NAME}
+)
+```
+
+the urdf.xacro file inside /robot should know about the other files. (its at the bottom)
+
+11. make launch files
 these go into
 > robot_bringup/launch/
 
-12 yaml file for ros2 bridge
+12. yaml file for ros2 bridge
 specify how sensor data translates between ros2 and gazebo
 goes into
 > robot_gazebo/config/
 
-13 add the rviz config into
+13. add the rviz config into
 > robot_gazebo/rviz/file.rviz
 
-14 make the gazebo launch file in r
-> obot_gazebo/launch/
+14. make the gazebo launch file in r
+> robot_gazebo/launch/
 
-15 bash script for quick launching:
+15. bash script for quick launching:
 > robot_bringup/scripts
 
