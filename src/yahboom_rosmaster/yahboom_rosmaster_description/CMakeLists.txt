@@ -14,10 +14,10 @@ find_package(urdf_tutorial REQUIRED)
 
 # Copy necessary files to designated locations in the project
 install (
-  DIRECTORY launch meshes urdf rviz
+  DIRECTORY config launch meshes urdf rviz
   DESTINATION share/${PROJECT_NAME}
 )
-  
+
 # Automates the process of setting up linting for the package, which
 # is the process of running tools that analyze the code for potential
 # errors, style issues, and other discrepancies that do not adhere to

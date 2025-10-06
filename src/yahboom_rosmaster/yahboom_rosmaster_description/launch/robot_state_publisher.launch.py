@@ -136,7 +136,7 @@ def generate_launch_description():
         name='urdf_model',
         default_value=default_urdf_model_path,
         description='Absolute path to robot urdf file')
-    
+
     declare_use_jsp_cmd = DeclareLaunchArgument(
         name='use_jsp',
         default_value='false',
@@ -199,7 +199,7 @@ def generate_launch_description():
     ld = LaunchDescription(ARGUMENTS)
 
     # Process the controller configuration before starting nodes
-    # ld.add_action(OpaqueFunction(function=process_ros2_controllers_config))
+    ld.add_action(OpaqueFunction(function=process_ros2_controllers_config))
 
     # Declare the launch options
     ld.add_action(declare_jsp_gui_cmd)
