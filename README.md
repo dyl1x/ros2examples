@@ -7,10 +7,11 @@ RHR coordinates z thumb, x pointer, y coming out of the screen
 ## Basics
 In ROS2 its Colcon, and the workspace is commonly at:
 >~/ros2_ws/
+
 the pkgs we make will go to
 >~/ros2_ws/src
 
-## Bash aliases:
+### Bash aliases:
 ```
 source /opt/ros/jazzy/setup.bash
 source ~/ros2_ws/install/setup.bash
@@ -44,11 +45,12 @@ touch ~/ros2_ws/src/mycobot_ros2/mycobot_description/urdf/mech/{g_shape_base_v2_
 
 to generate the coordinate frames pdfs, with flow chart:
 `ros2 run tf2_tools view_frames`
+
 to open pdf:
 `evince frames_YYYY-MM-DD_HH.MM.SS.pdf`
+
 to launch the model in rviz:
 `ros2 launch urdf_tutorial display.launch.py model:=/home/chamath/ros2_ws/src/yahboom_rosmaster/yahboom_rosmaster_description/urdf/robots/rosmaster_x3.urdf.xacro`
-
 
 make a file executable: `sudo chmod +x file.sh`
 
@@ -115,6 +117,7 @@ find_package(xacro REQUIRED)
 make world files
 these go inside the gz pkg,
 >robot_gazebo/worlds
+
 `mkdir -p worlds launch models`
 
 make a filename.world file and copy the code from a template work file.
