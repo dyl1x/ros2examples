@@ -63,53 +63,53 @@ rqt console
 
 ## Make robot sim
 1. make packages:
-- robot (main pkg)
-  - robot
-  - robot description
-  - gazebo
-  - system_tests
+  - robot (this one is just a file not a pkg)
+    - robot
+    - robot_description
+    - robot_gazebo
+    - robot_system_tests
 
 2. add the sub packages to the package.xml of main robot as:
-```
- <exec_depend>robot_bringup</exec_depend>
-```
-they will go into the main pkg:
->robot/robot/package.xml
+  ```
+  <exec_depend>robot_bringup</exec_depend>
+  ```
+  they will go into the main pkg:
+  >robot/robot/package.xml
 
 3. add this block to package.xml in gazebo pkg for gz integration:
-```
-  <depend>controller_manager</depend>
-  <depend>gz_ros2_control</depend>
-  <depend>python3-numpy</depend>
-  <depend>rclcpp</depend>
-  <depend>ros_gz</depend>
-  <depend>ros_gz_bridge</depend>
-  <depend>ros_gz_image</depend>
-  <depend>ros_gz_sim</depend>
-  <depend>ros2_control</depend>
-  <depend>ros2_controllers</depend>
-  <depend>trajectory_msgs</depend>
-  <depend>xacro</depend>
-  <exec_depend>gz_ros2_control_demos</exec_depend>
-  <exec_depend>rqt_robot_steering</exec_depend>
-  <exec_depend>rviz_imu_plugin</exec_depend>
-```
+  ```
+    <depend>controller_manager</depend>
+    <depend>gz_ros2_control</depend>
+    <depend>python3-numpy</depend>
+    <depend>rclcpp</depend>
+    <depend>ros_gz</depend>
+    <depend>ros_gz_bridge</depend>
+    <depend>ros_gz_image</depend>
+    <depend>ros_gz_sim</depend>
+    <depend>ros2_control</depend>
+    <depend>ros2_controllers</depend>
+    <depend>trajectory_msgs</depend>
+    <depend>xacro</depend>
+    <exec_depend>gz_ros2_control_demos</exec_depend>
+    <exec_depend>rqt_robot_steering</exec_depend>
+    <exec_depend>rviz_imu_plugin</exec_depend>
+  ```
 
 4. add them to cmakelists as well. of gz pkg
-```
-find_package(ament_cmake REQUIRED)
-find_package(controller_manager REQUIRED)
-find_package(gz_ros2_control REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(ros_gz REQUIRED)
-find_package(ros_gz_bridge REQUIRED)
-find_package(ros_gz_image REQUIRED)
-find_package(ros_gz_sim REQUIRED)
-find_package(ros2_control REQUIRED)
-find_package(ros2_controllers REQUIRED)
-find_package(trajectory_msgs REQUIRED)
-find_package(xacro REQUIRED)
-```
+  ```
+  find_package(ament_cmake REQUIRED)
+  find_package(controller_manager REQUIRED)
+  find_package(gz_ros2_control REQUIRED)
+  find_package(rclcpp REQUIRED)
+  find_package(ros_gz REQUIRED)
+  find_package(ros_gz_bridge REQUIRED)
+  find_package(ros_gz_image REQUIRED)
+  find_package(ros_gz_sim REQUIRED)
+  find_package(ros2_control REQUIRED)
+  find_package(ros2_controllers REQUIRED)
+  find_package(trajectory_msgs REQUIRED)
+  find_package(xacro REQUIRED)
+  ```
 5. build
 
 6. install depends:
@@ -118,36 +118,36 @@ find_package(xacro REQUIRED)
 7. build and source
 
 8. world files
-make world files
-these go inside the gz pkg,
->robot_gazebo/worlds
+  make world files
+  these go inside the gz pkg,
+  >robot_gazebo/worlds
 
-`mkdir -p worlds launch models`
+  `mkdir -p worlds launch models`
 
-make a filename.world file and copy the code from a template work file.
-add models to the folder
+  make a filename.world file and copy the code from a template work file.
+  add models to the folder
 
 9. yaml config. tell ros2 control how to manage the robot movements.
-file goes in:
->robot/robot_moveit_config/config/robot/
+  file goes in:
+  >robot/robot_moveit_config/config/robot/
 
 10. make the .urdf.xacro files
-make the folders: run a command inside:
-> robot/robot_description.
-```
-mkdir -p launch meshes rviz urdf/control urdf/mech urdf/robots
-```
+  make the folders: run a command inside:
+  > robot/robot_description.
+  ```
+  mkdir -p launch meshes rviz urdf/control urdf/mech urdf/robots
+  ```
 
-also add a block to the cmake so it knows about the folders
-```
-#copy needed files
-install(
-  DIRECTORY launch meshes urdf rviz
-  DESTINATION share/${PROJECT_NAME}
-)
-```
+  also add a block to the cmake so it knows about the folders
+  ```
+  #copy needed files
+  install(
+    DIRECTORY launch meshes urdf rviz
+    DESTINATION share/${PROJECT_NAME}
+  )
+  ```
 
-the urdf.xacro file inside /robot should know about the other files. (its at the bottom)
+  the urdf.xacro file inside /robot should know about the other files. (its at the bottom)
 
 11. make launch files
 these go into
