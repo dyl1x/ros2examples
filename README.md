@@ -131,7 +131,8 @@ rqt console
   file goes in:
   >robot/robot_moveit_config/config/robot/
 
-10. make the .urdf.xacro files
+10. Fleshing out robot model files:
+  this stuff goes into robot_description pkg.
   make the folders: run a command inside:
   > robot/robot_description.
   ```
@@ -146,24 +147,45 @@ rqt console
     DESTINATION share/${PROJECT_NAME}
   )
   ```
+11. Adding robot meshes
+  meshes go into 
+  > meshes/link_name/visual
 
+12. making .urdf.xacro files
+
+  /control
+  2 files : 
+  - gazebo_sim_ros2_control.urdf.xacro
+  - robot_ros2_control.urdf.xacro
+    -this file fleshes out the min and max params of the joints
+
+  /mech
+  3 files:
+  - gripper.urdf.xacro
+  - base.urdf.xacro
+  - robot_arm.urdf.xacro
+
+  /robots
+  1 file:
+  - robot.urdf.xacro
+    - i think this one connect the stuff inside /mech
   the urdf.xacro file inside /robot should know about the other files. (its at the bottom)
 
-11. make launch files
+13. make launch files
 these go into
 > robot_bringup/launch/
 
-12. yaml file for ros2 bridge
+14. yaml file for ros2 bridge
 specify how sensor data translates between ros2 and gazebo
 goes into
 > robot_gazebo/config/
 
-13. add the rviz config into
+15. add the rviz config into
 > robot_gazebo/rviz/file.rviz
 
-14. make the gazebo launch file in r
+16. make the gazebo launch file in r
 > robot_gazebo/launch/
 
-15. bash script for quick launching:
+17. bash script for quick launching:
 > robot_bringup/scripts
 
